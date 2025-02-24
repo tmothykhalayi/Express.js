@@ -5,6 +5,10 @@ import { checkSchema, query } from 'express-validator';
 import { createUserValidationSchema } from './utils/validationschema.mjs';  // Import the validation schema
 //importing routerfrom express
 import usersRouter from './routes/users.mjs'; // Import the users router
+//import mockusers from constants
+import { mockusers } from './utils/constants.mjs'; // Import the mock users data
+//import middelware.mjs
+import { loggingMiddleware } from './utils/middlewares.mjs'; // Import the logging middleware
 //express instance  
 const app = express();
 
@@ -14,22 +18,6 @@ app.use(express.json()); // This will allow us to handle JSON bodies in POST req
 // Mount the users router
 app.use('/api/users', usersRouter);
 //middleware to log requests
-const loggingMiddleware = (req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-};
-
-app.use(loggingMiddleware);
-
-const PORT = process.env.PORT || 3000;
-
-// Mock users data
-const mockusers = [
-  { id: 1, username: 'timoty', displayname: 'timoty' },
-  { id: 2, username: 'thadeaus', displayname: 'manya' },
-  { id: 3, username: 'esthy', displayname: 'nandwa' },
-  { id: 4, username: 'laura', displayname: 'otinga' }
-];
 
 // Home route
 app.get("/", (req, res) => {
