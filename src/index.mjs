@@ -69,7 +69,7 @@ app.post('/api/users',checkSchema(createUserValidationSchema ),(req, res) => {
 // Route to get all products
 app.get('/api/products', (req, res) => {
   res.send([
-    { id: 1, name: 'mango', price: 100 },
+    { id: 1, name: 'lemons', price: 100 },
     { id: 2, name: 'banana', price: 50 },
     { id: 3, name: 'apple', price: 80 }
   ]); // Send the list of products
