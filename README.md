@@ -47,5 +47,4 @@ Express will handle routing and middleware, while MongoDB will be used to persis
 Dependencies:
 express: Web framework for Node.js.
 mongoose: MongoDB ODM (Object Data Modeling) for handling database operations.
-dotenv: Loads environment variables from a .env file.
-Other dependencies (e.g., body-parser, cors) may be included based on your project needs.
+
