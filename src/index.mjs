@@ -9,11 +9,16 @@ import usersRouter from './routes/users.mjs'; // Import the users router
 import { mockusers } from './utils/constants.mjs'; // Import the mock users data
 //import middelware.mjs
 import { loggingMiddleware } from './utils/middlewares.mjs'; // Import the logging middleware
+//import products router
+import productsRouter from './routes/products.mjs'; // Import the products router
+//importing cookies
+import cookieParser from 'cookie-parser';
 //express instance  
 const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json()); // This will allow us to handle JSON bodies in POST requests
+app.use(cookieParser());
 
 // Mount the users router
 app.use('/api/users', usersRouter);
@@ -21,6 +26,7 @@ app.use('/api/users', usersRouter);
 
 // Home route
 app.get("/", (req, res) => {
+  res.cookie('hell', 'world' {maxAge:6000}); // Simple hello world response
   res.send("Hello World"); // Simple hello world response
 });
 
