@@ -171,3 +171,40 @@ app.delete('/api/users/:id', (req, res) => {
   mockusers.splice(userIndex, 1); // Remove the user from the array
   return res.status(200).send({ message: 'User deleted successfully' });
 });
+
+//setting up session logins
+app.post('/api/auth', (req, res) =>{
+  const {username, password} = req.body;
+  if(username === 'admin' && password === 'admin'){
+    req.session.user = {username};
+    return res.status(200).send('Login successful');
+  }
+  return res.status(401).send('Invalid credentials');
+
+});
+app.get('/api/auth/status', (req, res) =>{
+  if(req.session.user){
+    return res.status(200).send('Logged in');
+  }
+  return res.status(401).send('Not logged in');
+});
+
+//virtually sessions
+app.get('/api/cart', (req, res) => {
+  If(!req.session.user) return res.status(401).send('Not logged in');
+  const {body :item} = req;
+  const {cart}=req.session.user;
+  If(cart) {
+    cart.push(item);
+  }
+  else{
+    req.session.user.cart = [item];
+  }
+  return res.status(200).send(req.session.user.cart);
+});
+
+app.get('/api/cart', (req, res) => {
+  If(!req.session.user) return res.status(401).send('Not logged in');
+  const {cart}=req.session.user;
+  return res.status(200).send(cart);
+});
