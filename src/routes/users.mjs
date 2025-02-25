@@ -8,6 +8,10 @@ import{createUserValidationSchema} from './utils/validationschema.mjs';
 //importing the schema
 const router = Router();
 router.get ,('/api/users', (req, res) => {
+console.log(req.session);
+console.log(req.session.id);
+console.log(req.sessionStore.get(req.session.id));
+console.log(req.session.views);
   const { username, displayname } = req.query; // Extract query parameters
 
   // If query parameters exist, filter the users

@@ -13,20 +13,36 @@ import { loggingMiddleware } from './utils/middlewares.mjs'; // Import the loggi
 import productsRouter from './routes/products.mjs'; // Import the products router
 //importing cookies
 import cookieParser from 'cookie-parser';
+//importing session
+import session from "express-session";
 //express instance  
 const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json()); // This will allow us to handle JSON bodies in POST requests
 app.use(cookieParser());
+app.use(session{
+  secret: "dev timothy",
+  saveuninitialised; true,
+  resave: true
+  cookie: {secure: false
+    maxAge: 6000,
 
+  }
+});
 // Mount the users router
 app.use('/api/users', usersRouter);
 //middleware to log requests
 
 // Home route
 app.get("/", (req, res) => {
-  res.cookie('hell', 'world' {maxAge:6000}); // Simple hello world response
+  console.log(req.session);
+  console.log(req.session.id);
+  console.log(req.session.views);
+  req.session.visited=true;
+  req.session.views = req.session.views ? req.session.views + 1 : 1;
+
+  res.cookie('hello', 'world' {maxAge:6000}); // Simple hello world response
   res.send("Hello World"); // Simple hello world response
 });
 
