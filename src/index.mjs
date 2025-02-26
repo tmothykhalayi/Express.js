@@ -15,8 +15,19 @@ import productsRouter from './routes/products.mjs'; // Import the products route
 import cookieParser from 'cookie-parser';
 //importing session
 import session from "express-session";
+//IMPORTING passport
+import passport from "passport";
+//importing local strategy and its file directory 
+import LocalStrategy from "passport-local";
+import { mockusers } from "./utils/constants.mjs";
 //express instance  
 const app = express();
+//registering passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 // Middleware to parse JSON bodies
 app.use(express.json()); // This will allow us to handle JSON bodies in POST requests
@@ -208,3 +219,21 @@ app.get('/api/cart', (req, res) => {
   const {cart}=req.session.user;
   return res.status(200).send(cart);
 });
+//posting passport
+app.post('/api/auth', passport.authenticate('local'), (req, res) => {
+  return res.status(200).send('Login successful');
+
+});
+
+app.get('/api/auth/status', (req, res) => {
+  if(req.user){
+    return res.status(200).send('Logged in');
+  }
+  return res.status(401).send('Not logged in');
+});
+//logout function
+app.post('/api/auth/logout', (req, res) =>{
+  req.logout();
+  return res.status(200).send('Logged out');
+});
+
