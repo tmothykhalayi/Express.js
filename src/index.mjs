@@ -39,7 +39,11 @@ app.use(session{
   cookie: {secure: false
     maxAge: 6000,
 
-  }
+  },
+  store.mongostore({
+    client: require('mongoose').connection.client,
+    ttl: 14*24*60*60
+  }),
 });
 // Mount the users router
 app.use('/api/users', usersRouter);
