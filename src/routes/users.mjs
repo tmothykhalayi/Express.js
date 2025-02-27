@@ -3,6 +3,8 @@ import { Router } from "express";
 import {query ,checkschema ,matchedData } from 'express-validator';
 import { mockusers } from './utils/constants.mjs';
 import{createUserValidationSchema} from './utils/validationschema.mjs';
+import{user} from './mongoose/schemas/user';
+import {checkSchema} from 'express-validator';
 
 
 //importing the schema
@@ -32,6 +34,20 @@ console.log(req.session.views);
   // If no query parameters, return all users
   res.send(mockusers);
 });
+
+//handling database
+router.post('/api/users', checkschema() ,async (req, res) =>{
+  const{body} =request;
+  const newUser = new user(body);
+  try{
+    const saveduser = await newUser.save();
+    return res.status(201).send(saveduser);
+  }
+  catch(error){
+    console.log(error);
+    return res.status(500).send('Internal server error');
+  }});
+
 router.post('/api/users',checkSchema(createUserValidationSchema ),(req, res) => {
   const { username, displayname } = req.body; // Extract data from the body
 

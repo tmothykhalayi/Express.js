@@ -19,6 +19,11 @@ const userSchema = new Schema({
         type: String,
         default: 'user'
     },
+    password:{
+        not empty: true,
+        min: 8,
+        max: 20
+    }
     created_at: Date,
     updated_at: Date
 });
