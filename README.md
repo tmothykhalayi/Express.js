@@ -40,6 +40,8 @@ json
   "name": "Updated Item Name",
   "description": "Updated Item Description"
 }
+
+
 4. DELETE /api/items/:id
 Delete an item by ID.
 Notes:
