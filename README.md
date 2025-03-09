@@ -9,9 +9,6 @@ After setting up MongoDB, get the connection string and add it to your .env file
 
 Create a .env file:
 In the root directory of the project, create a .env file and add the following environment variables:
-
-env
-
 MONGO_URI=your_mongo_connection_string
 PORT=5000
 Running the Application
