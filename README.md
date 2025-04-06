@@ -1,7 +1,6 @@
 This is a simple web application built using Express for the backend and MongoDB for the database. It allows you to perform CRUD operations (Create, Read, Update, Delete) on a MongoDB database using a RESTful API built with Express.
 **Express Setup:**
 The app uses Express to set up the server and handle routing. Make sure you have Node.js installed. 
-
 MongoDB Setup:
 The app uses MongoDB as the database. If you don’t have MongoDB running locally, you can set up an account on MongoDB Atlas to use a cloud database or install MongoDB locally.
 
