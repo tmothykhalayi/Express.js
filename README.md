@@ -3,7 +3,6 @@ This is a simple web application built using Express for the backend and MongoDB
 The app uses Express to set up the server and handle routing. Make sure you have Node.js installed. 
 MongoDB Setup:
 The app uses MongoDB as the database. If you don’t have MongoDB running locally, you can set up an account on MongoDB Atlas to use a cloud database or install MongoDB locally.
-
 After setting up MongoDB, get the connection string and add it to your .env file.
 
 Create a .env file:
